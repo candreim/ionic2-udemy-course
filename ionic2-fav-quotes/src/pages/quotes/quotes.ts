@@ -1,22 +1,47 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {Component, OnInit} from '@angular/core';
+import { NavParams, AlertController } from 'ionic-angular';
 
-/*
-  Generated class for the Quotes page.
+import {Quote} from "../../data/quote.interface";
+import {QuotesServices} from "../../services/quotes";
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-quotes',
   templateUrl: 'quotes.html'
 })
-export class QuotesPage {
+export class QuotesPage implements OnInit {
+  quoteGrp:  { category: string, quotes: Quote[], icon: string };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(private navParams: NavParams,
+              private alertCtrl: AlertController, private quotesService: QuotesServices) { }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad QuotesPage');
+  onAddToFav(quote: Quote) {
+   const alert = this.alertCtrl.create({
+     title: 'Add Quote',
+     subTitle: 'Are you sure',
+     message: 'Are you sure you want to add the quote?',
+     buttons: [
+       {
+         text: 'Yes, go ahead!',
+         handler: () => {
+           this.quotesService.addQuote(quote);
+         }
+       },
+       {
+         role: 'cancel',
+         text: 'No, I do not want to.',
+         handler: () => { console.log('No') }
+       }
+     ]
+   });
+
+   alert.present();
   }
 
+  ngOnInit() {
+    this.quoteGrp = this.navParams.data;
+  }
+
+  ionViewDidLoad() {
+    //this.quoteGrp = this.navParams.data;
+  }
 }
