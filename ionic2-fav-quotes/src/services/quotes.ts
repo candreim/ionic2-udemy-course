@@ -1,11 +1,11 @@
 import {Quote} from "../data/quote.interface";
 
 export class QuotesServices {
+
   private favoriteQuotes: Quote[] = [];
 
   addQuote(quote: Quote) {
     this.favoriteQuotes.push(quote);
-    console.log(quote);
   }
 
   removeQuote(quote: Quote) {
@@ -22,4 +22,9 @@ export class QuotesServices {
     return this.favoriteQuotes.slice();
   }
 
+  isQuoteFavorite(quote: Quote) {
+   return this.favoriteQuotes.find((quoteElem: Quote) => {
+        return quoteElem.id == quote.id;
+      });
+  }
 }
