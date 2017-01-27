@@ -8,12 +8,25 @@ import {ShoppingListService} from "../../services/shopping-list.service";
 })
 export class ShoppingListPage {
   ingredient: Ingredient = { name: null, amount: null };
+  ingredientList: Ingredient[] = [];
 
   constructor(private shoppingListService: ShoppingListService) { }
 
   onAddItem() {
     this.shoppingListService.addIngredient(this.ingredient);
+    this.loadItems();
+  }
 
-    console.log(this.shoppingListService.getIngredients().length);
+  onRemoveItem(index: number) {
+    this.shoppingListService.removeIngredients(index);
+    this.loadItems();
+  }
+
+  ionViewWillEnter() {
+    this.loadItems();
+  }
+
+  private loadItems() {
+    this.ingredientList = this.shoppingListService.getIngredients();
   }
 }
