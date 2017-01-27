@@ -1,12 +1,22 @@
-import { NgModule, ErrorHandler } from '@angular/core';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import {NgModule, ErrorHandler} from '@angular/core';
+import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
+import {MyApp} from './app.component';
+
+import {EditRecipePage} from "../pages/edit-recipe/edit-recipe";
+import {RecipePage} from "../pages/recipe/recipe";
+import {RecipesPage} from "../pages/recipes/recipes";
+import {ShoppingListPage} from "../pages/shopping-list/shopping-list";
+import {TabsPage} from "../pages/tabs/tabs";
+import {ShoppingListService} from "../services/shopping-list.service";
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    EditRecipePage,
+    RecipePage,
+    RecipesPage,
+    ShoppingListPage,
+    TabsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -14,8 +24,16 @@ import { HomePage } from '../pages/home/home';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    EditRecipePage,
+    RecipePage,
+    RecipesPage,
+    ShoppingListPage,
+    TabsPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ShoppingListService
+    ]
 })
-export class AppModule {}
+export class AppModule {
+}
