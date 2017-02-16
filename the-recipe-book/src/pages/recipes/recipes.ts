@@ -15,11 +15,11 @@ export class RecipesPage {
   constructor(private navCtrl: NavController,
               private recipesService: RecipesService) {}
 
-  private onNewRecipe() {
+  protected onNewRecipe() {
     this.navCtrl.push(EditRecipePage, { mode: 'New' });
   }
 
-  private onLoadRecipe(recipe: Recipe, index: number) {
+  protected onLoadRecipe(recipe: Recipe, index: number) {
     this.navCtrl.push(RecipePage, { recipe: recipe, index: index });
   }
 
@@ -27,7 +27,7 @@ export class RecipesPage {
     this.loadRecipes();
   }
 
-  loadRecipes() {
+  protected loadRecipes() {
     this.recipes = this.recipesService.getRecipes();
   }
 }
