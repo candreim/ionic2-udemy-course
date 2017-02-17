@@ -1,22 +1,48 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {AuthService} from "../../services/auth-service";
+import {TabsPage} from "../tabs/tabs";
+import {NavController, AlertController, LoadingController} from "ionic-angular";
+import {SignupPage} from "../signup/signup";
 
-/*
-  Generated class for the Signin page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-signin',
   templateUrl: 'signin.html'
 })
 export class SigninPage {
+  credentials = {email: '', password: ''};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SigninPage');
+  constructor(private navCtrl: NavController,
+              private alertCtrl: AlertController,
+              private loadingCtrl: LoadingController,
+              private auth: AuthService) {
   }
 
+  protected onSignUp() {
+    this.navCtrl.push(SignupPage);
+  }
+
+  protected onLogin() {
+    const loading = this.loadingCtrl.create({
+      content: 'Signing in...'
+    });
+    loading.present();
+
+    this.auth.login(this.credentials)
+      .then(data => {
+        loading.dismiss();
+        this.navCtrl.setRoot(TabsPage)
+      })
+      .catch(error => {
+        loading.dismiss()
+          .then(() => {
+            const alert = this.alertCtrl.create({
+              title: error.name,
+              message: error.message,
+              buttons: ['OK']
+            });
+            alert.present();
+          });
+      });
+  }
 }

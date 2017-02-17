@@ -1,11 +1,6 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-buttons start>
-      <button ion-button icon-only menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-    </ion-buttons>
     <ion-title>Sign In</ion-title>
   </ion-navbar>
 
@@ -13,5 +8,31 @@
 
 
 <ion-content padding>
-
+  <form #frm="ngForm" (ngSubmit)="onLogin()">
+    <ion-list>
+      <ion-item>
+        <ion-label fixed>Mail</ion-label>
+        <ion-input type="email"
+                   name="email"
+                   [(ngModel)]="credentials.email"
+                   required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>Password</ion-label>
+        <ion-input type="password"
+                   name="password"
+                   [(ngModel)]="credentials.password"
+                   required></ion-input>
+      </ion-item>
+      <ion-item>
+        <button ion-button item-left icon-left type="submit" [disabled]="!frm.valid">
+          <ion-icon name="log-in"></ion-icon>
+          Log In</button>
+        <button ion-button item-right icon-left type="button" (click)="onSignUp()">
+          <ion-icon name="person"></ion-icon>
+          Sign Up
+        </button>
+      </ion-item>
+    </ion-list>
+  </form>
 </ion-content>

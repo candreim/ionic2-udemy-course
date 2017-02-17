@@ -8,7 +8,7 @@ import {RecipesPage} from "../recipes/recipes";
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-  shoppingListlPage = ShoppingListPage;
+  shoppingListPage = ShoppingListPage;
   recipesPage = RecipesPage;
 
 }
