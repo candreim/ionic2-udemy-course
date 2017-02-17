@@ -9,6 +9,8 @@ import {ShoppingListPage} from "../pages/shopping-list/shopping-list";
 import {TabsPage} from "../pages/tabs/tabs";
 import {ShoppingListService} from "../services/shopping-list.service";
 import {RecipesService} from "../services/recipes.service";
+import {SigninPage} from "../pages/signin/signin";
+import {SignupPage} from "../pages/signup/signup";
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import {RecipesService} from "../services/recipes.service";
     RecipePage,
     RecipesPage,
     ShoppingListPage,
-    TabsPage
+    TabsPage,
+    SigninPage,
+    SignupPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -29,7 +33,9 @@ import {RecipesService} from "../services/recipes.service";
     RecipePage,
     RecipesPage,
     ShoppingListPage,
-    TabsPage
+    TabsPage,
+    SigninPage,
+    SignupPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

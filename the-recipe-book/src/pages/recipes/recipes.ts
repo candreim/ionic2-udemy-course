@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {EditRecipePage} from "../edit-recipe/edit-recipe";
 import {RecipesService} from "../../services/recipes.service";
