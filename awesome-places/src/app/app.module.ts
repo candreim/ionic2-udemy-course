@@ -1,11 +1,13 @@
-import { NgModule, ErrorHandler } from '@angular/core';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import {NgModule, ErrorHandler} from '@angular/core';
+import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
+import {MyApp} from './app.component';
+import {HomePage} from '../pages/home/home';
 import {PlacePage} from "../pages/place/place";
 import {AddPlacePage} from "../pages/add-place/add-place";
 import {SetLocationPage} from "../pages/set-location/set-location";
 import {AgmCoreModule} from "angular2-google-maps/core";
+import {PlacesService} from "../services/places.service";
+import {Storage} from "@ionic/storage";
 
 @NgModule({
   declarations: [
@@ -29,6 +31,10 @@ import {AgmCoreModule} from "angular2-google-maps/core";
     AddPlacePage,
     SetLocationPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    PlacesService,
+    Storage]
 })
-export class AppModule {}
+export class AppModule {
+}

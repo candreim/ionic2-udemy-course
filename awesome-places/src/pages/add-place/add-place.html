@@ -11,46 +11,47 @@
 <ion-list>
   <ion-item>
     <ion-label fixed>Title</ion-label>
-    <ion-input
-      type="text"
-      [(ngModel)]="place.title"
-      required></ion-input>
+    <ion-input type="text"
+               [(ngModel)]="place.title"
+               required></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label floating>Description</ion-label>
-    <ion-textarea
-      type="text"
-      [(ngModel)]="place.description"></ion-textarea>
+    <ion-label floating>Description
+    </ion-label>
+    <ion-textarea type="text"
+                  [(ngModel)]="place.description">
+    </ion-textarea>
   </ion-item>
-
   <ion-grid>
     <ion-row>
       <ion-col>
-        <button
-          ion-button
-          block
-          outline
-          icon-left
-          (click)="onLocate()">
-          <ion-icon name="locate"></ion-icon>
-          Locate me
+        <button ion-button
+                block
+                outline
+                icon-left
+                (click)="onLocate()">
+          <ion-icon name="locate"></ion-icon>Locate me
         </button>
       </ion-col>
       <ion-col>
-        <button
-          ion-button
-          block
-          outline
-          icon-left
-          (click)="onOpenMap()">
-          <ion-icon name="map"></ion-icon>
-          Select on Map
+        <button ion-button
+                block
+                outline
+                icon-left
+                (click)="onOpenMap()">
+          <ion-icon name="map"></ion-icon>Select on Map
         </button>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row *ngIf="locationIsSet">
       <ion-col>
-        <p>Selected Place</p>
+        <sebm-google-map [latitude]="place.location.lat"
+                         [longitude]="place.location.lng"
+                         [zoom]="16">
+          <sebm-google-map-marker [latitude]="place.location.lat"
+                                  [longitude]="place.location.lng">
+          </sebm-google-map-marker>
+        </sebm-google-map>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -60,30 +61,26 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <button
-          ion-button
-          block
-          outline
-          icon-left
-          (click)="onTakePhoto()">
-          <ion-icon name="camera"></ion-icon>
-          Open Camera
+        <button ion-button
+                block
+                outline
+                icon-left
+                (click)="onTakePhoto()">
+          <ion-icon name="camera"></ion-icon>Open Camera
         </button>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row *ngIf="imageUrl != ''">
       <ion-col>
-        <img src="">
+        <img [src]="imageUrl">
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <button
-          ion-button
-          color="secondary"
-          block
-          (click)="onAddPlace()">
-          Add Place
+        <button ion-button
+                color="secondary"
+                block
+                (click)="onAddPlace()">Add Place
         </button>
       </ion-col>
     </ion-row>
