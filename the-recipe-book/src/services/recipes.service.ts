@@ -46,7 +46,7 @@ export class RecipesService {
   storeList(token: string) {
     const userId = this.authService.getUserInfo().uid;
     return this.http
-      .put(this.url + userId + '/shop-list.json?auth=' + token, this.recipes)
+      .put(this.url + userId + '/recipe-list.json?auth=' + token, this.recipes)
       .map((response: Response) => {
         return response.json();
       });
@@ -54,7 +54,7 @@ export class RecipesService {
 
   fetchList(token: string) {
     const userId = this.authService.getUserInfo().uid;
-    return this.http.get(this.url + userId + '/shop-list.json?auth=' + token)
+    return this.http.get(this.url + userId + '/recipe-list.json?auth=' + token)
       .map((response: Response) => {
       const recipes: Recipe[] = response.json() ? response.json() : []
       for(let rcp of recipes) {
