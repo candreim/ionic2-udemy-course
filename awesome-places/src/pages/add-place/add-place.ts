@@ -1,22 +1,34 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {Component, OnInit} from '@angular/core';
+import {Place} from "../../models/place.model";
+import {ModalController} from "ionic-angular";
+import {SetLocationPage} from "../set-location/set-location";
 
-/*
-  Generated class for the AddPlace page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-add-place',
   templateUrl: 'add-place.html'
 })
-export class AddPlacePage {
+export class AddPlacePage implements OnInit {
+  place: Place;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(private modalCtrl: ModalController) { }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AddPlacePage');
+  onLocate() {
+
+  }
+
+  onOpenMap() {
+    const modal = this.modalCtrl.create(SetLocationPage);
+    modal.present();
+  }
+
+  onTakePhoto() {}
+
+  onAddPlace() {
+
+  }
+
+  ngOnInit() {
+    this.place = Place.NewPlace();
   }
 
 }
