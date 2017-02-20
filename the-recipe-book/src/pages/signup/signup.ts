@@ -25,7 +25,6 @@ export class SignupPage {
     this.auth.register(this.credentials)
       .then(data => {
         loading.dismiss();
-        this.navCtrl.popToRoot();
       })
       .catch(error => {
       loading.dismiss()

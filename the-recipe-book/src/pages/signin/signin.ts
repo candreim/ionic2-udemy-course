@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {AuthService} from "../../services/auth-service";
-import {TabsPage} from "../tabs/tabs";
 import {NavController, AlertController, LoadingController} from "ionic-angular";
 import {SignupPage} from "../signup/signup";
+import {TabsPage} from "../tabs/tabs";
 
 
 @Component({
@@ -31,7 +31,7 @@ export class SigninPage {
     this.auth.login(this.credentials)
       .then(data => {
         loading.dismiss();
-        this.navCtrl.setRoot(TabsPage)
+        this.navCtrl.setRoot(TabsPage);
       })
       .catch(error => {
         loading.dismiss()
@@ -45,4 +45,5 @@ export class SigninPage {
           });
       });
   }
+
 }

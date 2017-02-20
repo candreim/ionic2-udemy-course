@@ -6,10 +6,11 @@
   </ion-header>
   <ion-content>
     <ion-list>
-      <button ion-item icon-left (click)="onLogout()">
-        <ion-icon name="log-out"></ion-icon>
+      <button ion-item icon-left *ngIf="isAuthd" (click)="onLogout()">
+        <ion-icon
+          name="log-out"></ion-icon>
         Log Out</button>
     </ion-list>
   </ion-content>
 </ion-menu>
-<ion-nav [root]="rootPage" #nav></ion-nav>
+<ion-nav [root]="signinPage" #nav></ion-nav>

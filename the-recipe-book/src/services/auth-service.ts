@@ -15,7 +15,7 @@ export class AuthService {
     return firebase.auth().createUserWithEmailAndPassword(credentials.email, credentials.password);
   }
 
-  public getUserInfo() : any {
+  public getUserInfo() {
     return firebase.auth().currentUser;
   }
 
